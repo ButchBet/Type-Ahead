@@ -1,7 +1,22 @@
+/* General styles */
+:root {
+    --background: #ffc600;
+}
 
+html {
+    font-family: 'helvetica neue';
+    background: var(--background);
+    font-size: 63.5%; /* 1rem = 10px */
+}
+
+body {
+    font-size: 2rem;
+}
 
 * {
     box-sizing: border-box;
+    padding: 0;
+    margin: 0;
 }
 
 /*
@@ -11,3 +26,9 @@
 4. Visual
 5. Other
 */
+
+/* 1 */
+/* 2 */
+/* 3 */
+/* 4 */
+/* 5 */
