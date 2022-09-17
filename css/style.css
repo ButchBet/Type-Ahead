@@ -28,7 +28,107 @@ body {
 */
 
 /* 1 */
+body,
+.form {
+    display: flex;
+}
+
+body {
+    flex-flow: row wrap;
+    justify-content: center;
+    align-content: flex-start;
+}
+
+.form {
+    position: relative;
+    flex-flow: column;
+    align-items: center;
+}
+
+.form__list {
+    position: absolute;
+}
 /* 2 */
+body {
+    width: 100vw;
+    height: 100vh;
+    padding: 20px;
+}
+
+.form {
+    width: 280px;
+    padding: 5px;
+}
+
+.form__input,
+.form__item {
+    width: 100%;
+}
+
+.form__input {
+    height: 40px;
+}
+
+.form__list {
+    width: 85%;
+    top: calc(100% - 2.4px);
+    /* top: calc(100% + 1px); */
+}
+
+.form__item {
+    padding: 10px 7px;
+}
+
 /* 3 */
+.form__input {
+    text-align: center;
+    font-size: 2rem;
+}
+
+.form__list {
+    font-size: 1rem;
+}
+
 /* 4 */
+.form,
+.form__list {
+    background-color: white;
+}
+
+.form,
+.form__input,
+.form__item {
+    border-radius: 2px;
+    box-shadow: 0 0 1.5px rgb(119, 115, 115);
+}
+
+.form__input {
+    border: none;
+}
+
+.form__list {
+    list-style: none;
+    background: transparent;
+}
+
+.form__item {
+    text-transform: capitalize;
+    border-bottom: 1px solid #D8D8D8;
+}
+
+.form--odd {
+    transform: perspective(100px) rotateX(-3deg) translateY(2px);
+    background: linear-gradient(to top,  #ffffff 0%,#EFEFEF 100%);
+}
+
+.form--pair {
+    transform: perspective(100px) rotateX(3deg) translateY(2px) scale(1.001);
+    background: linear-gradient(to bottom,  #ffffff 0%,#EFEFEF 100%);
+}
+
 /* 5 */
+
+.form__input:focus {
+    outline: none;
+    color: inherit;
+}
