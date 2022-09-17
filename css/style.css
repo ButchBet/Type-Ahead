@@ -29,7 +29,8 @@ body {
 
 /* 1 */
 body,
-.form {
+.form,
+.form__item {
     display: flex;
 }
 
@@ -47,6 +48,10 @@ body {
 
 .form__list {
     position: absolute;
+}
+
+.form__item {
+    justify-content: space-between;
 }
 /* 2 */
 body {
@@ -71,7 +76,7 @@ body {
 
 .form__list {
     width: 85%;
-    top: calc(100% - 2.4px);
+    top: calc(100% - 1.2px);
     /* top: calc(100% + 1px); */
 }
 
@@ -126,9 +131,16 @@ body {
     background: linear-gradient(to bottom,  #ffffff 0%,#EFEFEF 100%);
 }
 
-/* 5 */
+.marked {
+    background: var(--background);
+}
 
+/* 5 */
 .form__input:focus {
     outline: none;
     color: inherit;
+}
+
+.hidenItem {
+    display: none;
 }
