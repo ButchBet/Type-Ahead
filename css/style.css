@@ -46,7 +46,8 @@ body {
     align-items: center;
 }
 
-.form__list {
+.form__list,
+.counter {
     position: absolute;
 }
 
@@ -57,7 +58,13 @@ body {
 body {
     width: 100vw;
     height: 100vh;
-    padding: 20px;
+    padding: 40px;
+}
+
+.counter {
+    top: 0;
+    left: 0;
+    padding: 10px;
 }
 
 .form {
@@ -85,6 +92,10 @@ body {
 }
 
 /* 3 */
+.counter {
+    font-size: 1rem;
+}
+
 .form__input {
     text-align: center;
     font-size: 2rem;
@@ -95,11 +106,17 @@ body {
 }
 
 /* 4 */
+.counter {
+    color: gray;
+}
+
+.counter,
 .form,
 .form__list {
     background-color: white;
 }
 
+.counter,
 .form,
 .form__input,
 .form__item {
@@ -116,7 +133,8 @@ body {
     background: transparent;
 }
 
-.form__item {
+.form__item,
+.counter {
     text-transform: capitalize;
     border-bottom: 1px solid #D8D8D8;
 }
