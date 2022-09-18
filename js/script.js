@@ -3,6 +3,7 @@
 const search = document.getElementById('search');
 const suggestions = document.getElementById('suggestions');
 const mainSuggestions = Array.from(document.getElementsByClassName('from--main'));
+const counter = document.getElementById('counter');
 
 // Objects with the cities
 const endPoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
@@ -23,18 +24,27 @@ search.addEventListener('input', (e) => {
             suggestion.classList.add('hidenItem');
         });
 
-        let suggestions = matchedCities(value, cities);
+        let suggestions = matchedCities(value, cities); // Get the suggestions
         console.log(suggestions);
 
-        
+        found(suggestions); // Set the quantity of sugestions
+
+
     } else { // Show the main items when the string be empty
         mainSuggestions.forEach((suggestion) => {
             suggestion.classList.remove('hidenItem');
         });
+
+        found([]); // Set the results as 0
     }
 });
 
 // Function to find the posible cities or states and filter them
 function matchedCities(input, cities) {
     return cities.filter((city) => city.city.includes(input) || city.state.includes(input))
+}
+
+// Function to set the item found in the searching 
+function found(suggestions) {
+    counter.textContent = suggestions.length;
 }
