@@ -1,7 +1,7 @@
 // alert('Hello World');
 // Elements
 const search = document.getElementById('search');
-const suggestions = document.getElementById('suggestions');
+const suggestionsList = document.getElementById('suggestions');
 const mainSuggestions = Array.from(document.getElementsByClassName('from--main'));
 const counter = document.getElementById('counter');
 
@@ -17,34 +17,63 @@ fetch(endPoint, options)
     .then(data => cities.push(...data)); // Loading the cities into an array
 
 search.addEventListener('input', (e) => {
-    let value = search.value.trim();
+    const value = search.value.trim();
+
+    suggestionsList.textContent = '';
 
     if(value.length > 0) { // Avoid making search when the input is empty
-        mainSuggestions.forEach((suggestion) => {
-            suggestion.classList.add('hidenItem');
-        });
+        const suggestions = matchedCities(value, cities); // Get the suggestions
 
-        let suggestions = matchedCities(value, cities); // Get the suggestions
-        console.log(suggestions);
+        changeSuggestionsQuantity(suggestions); // Set the quantity of sugestions
 
-        found(suggestions); // Set the quantity of sugestions
-
-
+        showSuggestions(value, suggestions);
     } else { // Show the main items when the string be empty
-        mainSuggestions.forEach((suggestion) => {
-            suggestion.classList.remove('hidenItem');
-        });
-
-        found([]); // Set the results as 0
+        changeSuggestionsQuantity([]); // Set the results as 0
     }
 });
 
 // Function to find the posible cities or states and filter them
 function matchedCities(input, cities) {
-    return cities.filter((city) => city.city.includes(input) || city.state.includes(input))
+    const regex = new RegExp(input, 'gi');
+    
+    return cities.filter((city) => city.city.match(regex) || city.state.match(regex))
 }
 
 // Function to set the item found in the searching 
-function found(suggestions) {
+function changeSuggestionsQuantity(suggestions) {
     counter.textContent = suggestions.length;
+}
+
+// Function show the suggestions 
+function showSuggestions(input, suggestions) {
+    const items = suggestions.map((place, index, array) => {
+        const regex = new RegExp(input, 'gi');
+
+        const city = place.city.replace(regex, `<span class="marked">${input}</span>`);
+
+        const state = place.state.replace(regex, `<span class="marked">${input}</span>`);
+
+        // Check if the element is pair or odd in order to the array of siggestions
+        let position = '';
+
+        if((index + 1 ) % 2 === 0) {
+            position = 'pair';
+        } else {
+            position = 'odd';
+        }
+
+        return `
+            <li class="form__item form--${position}">
+                <span>${city}, ${state}</span>
+                <span class="population">${populationWithCommas(place.population)}</span>
+            </li>
+        `;
+    }).join('');
+
+    suggestionsList.innerHTML = items;
+}
+
+// Function to set the poputaliton with commas
+function populationWithCommas(population) {
+    return population.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
